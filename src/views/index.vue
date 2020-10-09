@@ -75,10 +75,14 @@ export default {
   data() {
     return {
 	  sites1:[
-		{svg:'',url:require('@/assets/img/therr/Bento1.png'),index:0},
-	    {svg:'',url:require('@/assets/img/therr/Bento2.png'),index:1},
-	    {svg:'',url:require('@/assets/img/therr/Bento3.png'),index:2},
-	    {svg:'',url:require('@/assets/img/therr/Bento4.png'),index:3}
+		  {svg:'',url:'',index:0},
+		  {svg:'',url:'',index:1},
+		  {svg:'',url:'',index:2},
+		  {svg:'',url:'',index:3}
+		// {svg:'',url:require('@/assets/img/therr/Bento1.png'),index:0},
+	 //    {svg:'',url:require('@/assets/img/therr/Bento2.png'),index:1},
+	 //    {svg:'',url:require('@/assets/img/therr/Bento3.png'),index:2},
+	 //    {svg:'',url:require('@/assets/img/therr/Bento4.png'),index:3}
 	  ],
 	  videotime:0,
 	  dom:{

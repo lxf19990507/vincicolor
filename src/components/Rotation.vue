@@ -10,7 +10,10 @@
       </div>
 
       <div class="img-wrap f-center">
-		  <img :src="site.url" :style="{transition: iscd,left:imgs[i].index*740+'px'}" ref='imgs' class="img-text w100 f-center" v-for="(site,i) in imgs" :key='i' />
+		  <div :style="{transition: iscd,left:imgs[i].index*740+'px'}" ref='imgs' class="img-text w100 f-center" v-for="(site,i) in imgs" :key='i'>
+			  {{i}}
+		  </div>
+		  <!-- <img :src="site.url" :style="{transition: iscd,left:imgs[i].index*740+'px'}" ref='imgs' class="img-text w100 f-center" v-for="(site,i) in imgs" :key='i' /> -->
       </div>
   </div>
 </template>
