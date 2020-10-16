@@ -44,23 +44,58 @@ export function prevent(imgNode,wrapNode){
 	} 
 }
 
-export function WaterfallFlow(imgData,num=200,Callback){
+export function WaterfallFlow(Class,imgData,num=200,Callback){
+		
 		var img=new Image()
 		var imgsrc =[]
-
-		var i=0
+		var pro = []
+		var imgWidth = []
+		var right=[]
+		var sub=[]
+		var end=[]
+		var count=0		
+		var compressWidthCount=0
+		
+		var x=0
 		var dfs=()=>{
-			if( imgData.length<=num?(i==imgData.length):i==num ){
-				
-				Callback({imgsrc:imgsrc})
+			
+			if( imgData.length<=num?(x==imgData.length):x==num ){
+				var domWidth = document.querySelector(Class).clientWidth-17
+				for(let i=0;i<pro.length;i++){
+					var compressWidth=pro[i]*200
+					compressWidthCount+=(compressWidth+20)
+					if(compressWidthCount>domWidth){
+						
+						sub.push(i-1)
+						var ls_right=domWidth - (compressWidthCount-compressWidth-20)
+						right.push(ls_right)
+						
+						
+						var allcount=0;
+						console.log(i-1)
+						for(let s=count;s<=i-1;s++){
+							allcount+=pro[s]
+						}
+						var add=(ls_right-25)/allcount
+						for(let s=count;s<=i-1;s++){
+							end.push(200+add)
+						}
+						count=i
+						compressWidthCount=compressWidth
+					}
+				}
+				console.log(end)
+				Callback({imgsrc:imgsrc,end:end})
 				return
 			}
-			imgsrc.push(imgData[i])
-			img.src=imgData[i]
+			imgsrc.push(imgData[x])
+			img.src=imgData[x]
 			img.onload=function(){
+				pro.push(img.width/img.height)
+				imgWidth.push(img.width)
 				dfs()
 			}
-			i++
+			x++
 		}
 		dfs()
 	}

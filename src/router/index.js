@@ -18,6 +18,10 @@ Vue.use(VueRouter)
   {
     path:'/xianying',
     component:()=>import('../views/xianying.vue')
+  },
+  {
+	  path:'/drag',
+	  component:()=>import('../views/drag.vue')
   }
 ]
 

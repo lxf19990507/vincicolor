@@ -2,18 +2,14 @@
   <div @mousedown="drop($event)" class="lunbo-wrap f-alignNone">
       <div class="nav-wrap f-arrayY f-alignNone">
         <div class="nav-text f-arrayY f-centerX" 
-		:style="{'background-color':(backgroundColor && indexnewLi==i?backgroundColor:null),'color':(indexnewLi==i?hoverTextColor:'')}" 
-		v-for="(site,i) in imgs" @mouseenter="moust(i,i)" @mouseleave="leave"><!--  -->
-            <p class="f-size20 fwe7">{{site.navtop}}</p>
-            <p class="f-size14 mt6">{{site.navbottom}}</p>
+		:style="{'background-color':(backgroundColor && indexnewLi==i?backgroundColor:null)}" 
+		v-for="(site,i) in imgs" @mouseenter="moust(i,'unevent')" @mouseleave="leave"><!--  -->
+            <img :src="site.svg" />
         </div>
       </div>
 
       <div class="img-wrap f-center">
-		  <div :style="{transition: iscd,left:imgs[i].index*740+'px'}" ref='imgs' class="img-text w100 f-center" v-for="(site,i) in imgs" :key='i'>
-			  {{i}}
-		  </div>
-		  <!-- <img :src="site.url" :style="{transition: iscd,left:imgs[i].index*740+'px'}" ref='imgs' class="img-text w100 f-center" v-for="(site,i) in imgs" :key='i' /> -->
+		  <img :src="site.url" :style="{transition: iscd}" class="img-text w100 f-center" :class="indexnewLi==i?'imgShow':'imgHidden'" v-for="(site,i) in imgs" :key='i' />
       </div>
   </div>
 </template>
@@ -50,13 +46,9 @@
 	  */
       moust(val,unevent){
 		unevent?clearInterval(this.timer):''
+
         this.indexnewLi=val
-        var sort=this.indexnewLi-this.indexoldLi
-            for(var s=0;s<this.imgs.length;s++){
-              this.imgs[s].index=parseInt(this.imgs[s].index)-parseInt(sort)
-            }
         this.indexoldLi=val
-		console.log(this.imgs)
       },
 	  leave(){
 		  this.timer=setInterval(()=>{
@@ -83,8 +75,9 @@
 	width: 208px;
 	height: 93px;
 	cursor: pointer;
-	color: #FFFFFF;
-	background-color: #cccccc;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	overflow: hidden;
 }
 
 .img-wrap{
@@ -94,7 +87,14 @@
 	height: 433px;
 	padding: 20px;
 	background-color: rgba(255,255,255,0.1);
-	box-shadow: 0px 22px 52px 8px rgba(0, 5, 255, 0.6);
+}
+.imgHidden{
+	opacity: 0;
+	z-index: 0;
+}
+.imgShow{
+	opacity: 1;
+	z-index: 1;
 }
 .img-text{
 	position: absolute;

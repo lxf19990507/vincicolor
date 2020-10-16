@@ -12,7 +12,15 @@ export class lazy{
         return this.instance
     }
     callback(val){
-        lazy.state().obj[val[0].target.className](val) 
+		var length=val.length
+		var index=0
+		for(let i=0;i<length;i++){
+		    if( val[i].intersectionRect.top!=0 ){
+				index=i
+				break
+			}
+		}
+        lazy.state().obj[val[index].target.className](val[index])
     }
     /**
      * 开始观察

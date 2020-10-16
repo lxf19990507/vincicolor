@@ -76,15 +76,11 @@
 	  }
     },
     mounted() {
-		this.play()
+		// this.play()
       // this.pause()
     }
   }
 </script>
 <style scoped>
-  .wrapin{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0);
-  }
+
 </style>

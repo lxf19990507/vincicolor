@@ -16,10 +16,10 @@
 
       <!-- -->
       <div class="f-space f-rightX f-baseX">
-        <router-link to="/buy" tag="button" class="log cursor" :class="$route.path=='/buy'?'buylog':''">
-          <slot name="button1">免费领取</slot>
+        <router-link to="/buy" tag="button" class="log cursor" :style="{color:backstate!=0 || !topHidden ?'#000000':''}">
+          <slot name="button1" >个人中心</slot>
         </router-link>
-        <button class="short cursor" :class="$route.path=='/buy'?'buyshort':''" >登录</button>
+        <button class="short cursor" :class="$route.path=='/buy'?'buyshort':''" >购买</button>
       </div>
       <!--  -->
     </div>
@@ -110,6 +110,7 @@ export default {
     },
   },
   mounted() {
+	   
   },
 };
 </script>
@@ -153,11 +154,11 @@ export default {
 .log {
   width: 132px;
   height: 38px;
-  background: #4affff;
+  background: #FFFFFF;
   border-radius: 6px;
   font-weight: 600;
   font-size: 16px;
-  color: #1b1b1b;
+  color: #2BD7FE;
 }
 .buylog {
   background-color: #fff;
@@ -168,12 +169,12 @@ export default {
   height: 38px;
   background: rgba(0, 0, 0, 0);
   border-radius: 6px;
-  border: 1px solid #4affff;
+  border: 1px solid #FFFFFF;
   margin-left: 8px;
   font-weight: 600;
   font-size: 16px;
   text-align: center;
-  color: #4affff;
+  color: #FFFFFF;
 }
 .buyshort {
   border: 1px solid #fff;

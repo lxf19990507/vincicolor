@@ -6,8 +6,8 @@
 		:style="{top:cliy?cliy+'px':'' ,left:clix?clix+'px':'' }" 
 		:src="mubusrc" @click.stop="" @mousedown="testtwo" /> </div> <!-- mubuImgMousedown-->
 	</div>
-	<div class="img-wrap f-autobr">
-		 <img :src="item" v-for="(item,i) in imgsrc" @click.stop="mubu(item)" /> 
+	<div class="img-wrap ">
+		 <img ref='imgref' :style="{height:imgHeight[i]?imgHeight[i]+'px':'200px' }"  :src="item" v-for="(item,i) in imgsrc" @click.stop="mubu(item)" /> 
 	</div>
   </div>
 </template>
@@ -24,11 +24,12 @@ export default {
 		  mubusrc:null, //遮罩之中的图片
 		  dom:{	//存储dom节点
 			  translateImg:null,
-			  home:null
+			  home:null,
 		  },
 		  clix:null,
 		  cliy:null,
-		  scale:1
+		  scale:1,
+		  imgHeight:[]
 	  }
   },
   methods:{
@@ -46,8 +47,9 @@ export default {
 		  		}
 		  		imgData.push( URL.createObjectURL( e.target.files[key]) )
 		  	}
-		  	WaterfallFlow(imgData,200,(val)=>{
+		  	WaterfallFlow('.img-wrap',imgData,500,(val)=>{
 		  		this.imgsrc.push(...val.imgsrc)
+				this.imgHeight.push(...val.end)
 		  	})
 	  },
 	  reset(){
@@ -81,6 +83,8 @@ export default {
 	  }
   },
   mounted(){
+	  // console.log(document.body.offsetWidth)
+	  
   }
 };
 </script>
@@ -95,8 +99,11 @@ export default {
 		width: auto;
 		max-width: 100%;
 		height: 200px;
-		border: 2px solid aqua;
-		/* float: left; */
+		/* border: 2px solid aqua; */
+		
+		float: left;
+		margin: 10px;
+		
 	}
 	.mubu{
 		position: fixed;
